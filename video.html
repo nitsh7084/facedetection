@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/clmtrackr.js"></script>
+<script type="text/javascript" src="models/model_pca_20_svm.js"></script>
+
+<style type="text/css">
+.container{
+position:relative;
+}
+#canvas{
+position:absolute;
+top:0px;
+left:0px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<video id="video" height="300" width="300" autoplay loop controls>
+<source src="franck.ogv" type="video/ogg" />
+</video>
+
+<div id="position">
+
+</div>
+
+<canvas id="canvas" height="300" width="300"></canvas>
+
+</div>
+
+<script type="text/javascript">
+
+var video_input = document.getElementById('video');
+
+var tracker = new clm.tracker();
+
+tracker.init(pModel);
+tracker.start(video_input);
+
+function position_loop(){
+requestAnimationFrame(position_loop);
+
+var positions = tracker.getCurrentPosition();
+var position_string = "";
+if(positions){
+for(var i=0;i<10;i++){
+position_string += i+' : ['+positions[i][0].toFixed(2)+','+positions[i][1].toFixed(2)+']<br/>';
+}
+document.getElementById('position').innerHTML = position_string;
+}
+}
+
+position_loop();
+
+
+var video_canvas = document.getElementById('canvas');
+var vc = video_canvas.getContext('2d');
+
+function draw_loop(){
+requestAnimationFrame(draw_loop);
+vc.clearRect(0,0,video_canvas.width,video_canvas.height);
+tracker.draw(video_canvas);
+}
+
+draw_loop();
+
+</script>
+
+
+</body>
+</html>

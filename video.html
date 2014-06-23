@@ -44,7 +44,7 @@
           // print the positions
           var positionString = "";
           if (positions) {
-            for (var p = 0;p < 10;p++) {
+            for (var p = 0;p <= 70;p++) {
               positionString += "featurepoint "+p+" : ["+positions[p][0].toFixed(2)+","+positions[p][1].toFixed(2)+"]<br/>";
             }
             document.getElementById('positions').innerHTML = positionString;

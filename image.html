@@ -181,7 +181,7 @@
 				
 				// update stats on iteration
 				document.addEventListener("clmtrackrIteration", function(event) {
-									get_position();
+									//get_position();
 					//stats.update();
 				}, false);
 
@@ -273,13 +273,23 @@
 				
 				function get_position(){
 				var positions = ctrack.getCurrentPosition();
-				
+				var json_data = {};
+				var result = new Array();
+				var landmark = {};
 				if(positions){
 				for(var i=0;i<positions.length;i++){
-				$('.positions').append('pos'+i+':'+positions[i][0]);
-				console.log(positions[i][0]);
+				var nose_contour_left1 = {};
+				nose_contour_left1['x'] = positions[34][0];
+				nose_contour_left1['y'] = positions[34][1];
+				landmark = {'nose_contour_left1':nose_contour_left1}
 				}
+				json_data = {"result" : result};
+				console.log(json_data);
+				$('.positions').html(json_data);
+
+				//console.log(positions[i][0]);
 				}
+				
 				}
 				
 

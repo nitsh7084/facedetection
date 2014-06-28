@@ -151,6 +151,7 @@
 					drawRequest = requestAnimFrame(drawLoop);
 					overlayCC.clearRect(0, 0, 720, 576);
 					if (ctrack.getCurrentPosition()) {
+					get_position();
 						ctrack.draw(overlay);
 					}
 				}
@@ -276,6 +277,7 @@
 				if(positions){
 				for(var i=0;i<positions.length;i++){
 				$('.positions').append('pos'+i+':'+pos[i][0]);
+				console.log(pos[i][0]);
 				}
 				}
 				}

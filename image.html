@@ -175,10 +175,12 @@
 					document.getElementById('convergence').style.backgroundColor = "#00FF00";
 					// stop drawloop
 					cancelRequestAnimFrame(drawRequest);
+					get_position();
 				}, false);
 				
 				// update stats on iteration
 				document.addEventListener("clmtrackrIteration", function(event) {
+									get_position();
 					//stats.update();
 				}, false);
 

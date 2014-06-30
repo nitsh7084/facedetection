@@ -284,16 +284,33 @@
 				if(positions){
 				for(var i=0;i<positions.length;i++){
 				var nose_contour_left1,nose_contour_left2,left_eyebrow_lower_middle,nose_left,mouth_upperlip_left1,mouth_upperlip_left2,left_eye_top,right_eye_upper_left_quarter,right_eye_bottom, right_eyebrow_lower_right_quarter,mouth_upper_lip_left,left_eyebrow_upper_left_quarter,left_eyebrow_lower_left_quarter = {};
-				
+				var right_eye_bottom,left_eye_bottom,right_eye_top,left_eye_top,right_eye_right_corner,left_eye_right_corner,right_eye_left_corner,left_eye_left_corner,contour_left3,contour_right3,nose_contour_left2,nose_contour_right2 = {};
 				var nose_pos = {x:positions[34][0],y:positions[34][1]};
 				var noseleft2 = {x:positions[35][0],y:positions[35][1]};
 				var lefteyebrowlowermiddle = {x:positions[20][0],y:positions[20][1]};
 				var noseleft = {x:positions[36][0],y:positions[36][1]};
 				var mouthupperlipleft1 = {x:positions[44][0],y:positions[44][1]};
-				landmark = {'nose_contour_left1':nose_pos,'nose_contour_left2':noseleft2,'left_eyebrow_lower_middle':lefteyebrowlowermiddle,'nose_left':noseleft,'mouth_upperlip_left1':mouthupperlipleft1};
+				var righteyebottom = {x:positions[31][0],y:positions[31][1]};
+				var lefteyebottom = {x:positions[26][0],y:positions[26][1]};
+				var righteyetop = {x:positions[29][0],y:positions[29][1]};
+				var lefteyetop = {x:positions[24][0],y:positions[24][1]};
+				var righteyerightcorner = {x:positions[28][0],y:positions[28][1]};
+				var lefteyerightcorner = {x:positions[25][0],y:positions[25][1]};
+				var righteyeleftcorner = {x:positions[30][0],y:positions[30][1]};
+				var lefteyeleftcorner = {x:positions[23][0],y:positions[23][1]};
+				var nosecontourleft2 = {x:positions[35][0],y:positions[35][1]};
+				var nosecontourright2 = {x:positions[39][0],y:positions[39][1]};
+				var contourleft3 = {x:positions[36][0],y:positions[23][1]};
+				var contourright3 = {x:positions[38][0],y:positions[23][1]};
+				
+				
+				landmark = {'right_eye_bottom':righteyebottom,'left_eye_bottom':left_eye_bottom,'right_eye_top':righteyetop,'left_eye_top':lefteyetop,'right_eye_right_corner':righteyerightcorner,'left_eye_right_corner':lefteyerightcorner,'right_eye_left_corner':righteyeleftcorner,'left_eye_left_corner':lefteyeleftcorner,'contour_left3':contourleft3,'contour_right3':contourright3,'nose_contour_left2':nosecontourleft2,'nose_contour_right2':nosecontourright2
+			    };
+				
+				
 				}
 				result['landmark'] = landmark;
-				console.log(landmark);
+
 				json_data = {"result" : result};
 				console.log(json_data);
 				$('.positions').html(json_data);

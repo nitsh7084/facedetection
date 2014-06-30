@@ -118,6 +118,7 @@
 						<!--<a href="https://github.com/auduno/clmtrackr"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>-->
 
 			<script>
+							var pos_do = "no";
 				var cc = document.getElementById('image').getContext('2d');
 				var overlay = document.getElementById('overlay');
 				var overlayCC = overlay.getContext('2d');
@@ -148,10 +149,14 @@
 				}
 				
 				function drawLoop() {
+
 					drawRequest = requestAnimFrame(drawLoop);
 					overlayCC.clearRect(0, 0, 720, 576);
 					if (ctrack.getCurrentPosition()) {
+					if(pos_do == "no"){
 					get_position();
+                      pos_do = "yes";
+					 }
 						ctrack.draw(overlay);
 					}
 				}
@@ -274,15 +279,21 @@
 				function get_position(){
 				var positions = ctrack.getCurrentPosition();
 				var json_data = {};
-				var result = new Array();
+				var result = {};
 				var landmark = {};
 				if(positions){
 				for(var i=0;i<positions.length;i++){
-				var nose_contour_left1 = {};
-				nose_contour_left1['x'] = positions[34][0];
-				nose_contour_left1['y'] = positions[34][1];
-				landmark = {'nose_contour_left1':nose_contour_left1}
+				var nose_contour_left1,nose_contour_left2,left_eyebrow_lower_middle,nose_left,mouth_upperlip_left1,mouth_upperlip_left2,left_eye_top,right_eye_upper_left_quarter,right_eye_bottom, right_eyebrow_lower_right_quarter,mouth_upper_lip_left,left_eyebrow_upper_left_quarter,left_eyebrow_lower_left_quarter = {};
+				
+				var nose_pos = {x:positions[34][0],y:positions[34][1]};
+				var noseleft2 = {x:positions[35][0],y:positions[35][1]};
+				var lefteyebrowlowermiddle = {x:positions[20][0],y:positions[20][1]};
+				var noseleft = {x:positions[36][0],y:positions[36][1]};
+				var mouthupperlipleft1 = {x:positions[44][0],y:positions[44][1]};
+				landmark = {'nose_contour_left1':nose_pos,'nose_contour_left2':noseleft2,'left_eyebrow_lower_middle':lefteyebrowlowermiddle,'nose_left':noseleft,'mouth_upperlip_left1':mouthupperlipleft1};
 				}
+				result['landmark'] = landmark;
+				console.log(landmark);
 				json_data = {"result" : result};
 				console.log(json_data);
 				$('.positions').html(json_data);
